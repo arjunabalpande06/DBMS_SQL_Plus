@@ -1,0 +1,12 @@
+create or replace procedure WhileLoop()
+ AS
+ num NUMBER := 1;
+ sum1 NUMBERE := 0;
+ BEGIN
+ WHILE num <= 10 LOOP
+    sum1 := sum1+num;
+    num := num+1;
+ END LOOP;
+ DBMS_OUTPUT.PUT_LINE('Sum of first 10 numbers : '||sum1);
+ END;
+ /

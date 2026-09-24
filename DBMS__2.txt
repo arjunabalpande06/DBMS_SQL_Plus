@@ -1,0 +1,37 @@
+EXPERIMENT 11
+
+create or replace function reverse_it(x in int) return int
+ AS
+   n int;
+   rev int:= 0;
+   r int;
+ BEGIN
+ n := x;
+ WHILE n > 0 LOOP
+   r := MOD(n,10);
+   rev := (rev * 10) + r;
+   n := trunc(n/10);
+ END LOOP;
+ RETURN rev;
+ END;
+ /
+
+EXPERIMENT 15
+
+CREATE OR REPLACE TRIGGER TR_TEST1_DEL_UPT_INSR 
+BEFORE INSERT OR DELETE OR UPDATE ON TEST1 
+FOR EACH ROW 
+DECLARE  
+  sydate VARCHAR2(10); 
+BEGIN 
+  sydate := LOWER(TO_CHAR(SYSDATE, 'dy')); 
+
+  IF sydate NOT IN ('sat', 'sun') THEN 
+    DBMS_OUTPUT.PUT_LINE('Operation allowed'); 
+  ELSE 
+    RAISE_APPLICATION_ERROR(-20001, 'Operation not allowed on weekends'); 
+  END IF; 
+END;
+/
+
+

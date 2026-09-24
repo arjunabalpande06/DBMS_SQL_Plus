@@ -1,0 +1,103 @@
+CREATE TABLE S (
+    SNO VARCHAR2(5) PRIMARY KEY,
+    SNAME VARCHAR2(50),
+    STATUS NUMBER(3),
+    CITY VARCHAR2(50)
+);
+
+
+INSERT INTO S VALUES ('S1','Smith',20,'London');
+INSERT INTO S VALUES ('S2','Jones',10,'Paris');
+INSERT INTO S VALUES ('S3','Blake',30,'Paris');
+INSERT INTO S VALUES ('S4','Clark',20,'London');
+INSERT INTO S VALUES ('S5','Adams',30,'Athens');
+
+CREATE TABLE P (
+    PNO VARCHAR2(5) PRIMARY KEY,
+    PNAME VARCHAR2(50),
+    COLOR VARCHAR2(50),
+    WEIGHT NUMBER(5,1),
+    CITY VARCHAR2(50)
+);
+
+
+INSERT INTO P VALUES ('P1','Nut','Red',12.0,'London');
+INSERT INTO P VALUES ('P2','Bolt','Green',17.0,'Paris');
+INSERT INTO P VALUES ('P3','Screw','Blue',17.0,'Rome');
+INSERT INTO P VALUES ('P4','Screw','Red',14.0,'London');
+INSERT INTO P VALUES ('P5','Cam','Blue',12.0,'Paris');
+INSERT INTO P VALUES ('P6','Cog','Red',19.0,'London');
+
+CREATE TABLE J (
+    JNO VARCHAR2(5) PRIMARY KEY,
+    JNAME VARCHAR2(50),
+    CITY VARCHAR2(50)
+);
+
+
+INSERT INTO J VALUES ('J1','Sorter','Paris');
+INSERT INTO J VALUES ('J2','Display','Rome');
+INSERT INTO J VALUES ('J3','OCR','Athens');
+INSERT INTO J VALUES ('J4','Console','Athens');
+INSERT INTO J VALUES ('J5','RAID','London');
+INSERT INTO J VALUES ('J6','EDS','Oslo');
+INSERT INTO J VALUES ('J7','Tape','London');
+
+
+CREATE TABLE SPJ (
+    SNO VARCHAR2(5),
+    PNO VARCHAR2(5),
+    JNO VARCHAR2(5),
+    QTY NUMBER,
+    PRIMARY KEY (SNO, PNO, JNO),
+    FOREIGN KEY (SNO) REFERENCES S(SNO),
+    FOREIGN KEY (PNO) REFERENCES P(PNO),
+    FOREIGN KEY (JNO) REFERENCES J(JNO)
+);
+
+INSERT INTO SPJ VALUES ('S1','P1','J1',200);
+INSERT INTO SPJ VALUES ('S1','P1','J4',700);
+
+INSERT INTO SPJ VALUES ('S2','P3','J1',400);
+INSERT INTO SPJ VALUES ('S2','P3','J2',200);
+INSERT INTO SPJ VALUES ('S2','P3','J3',200);
+INSERT INTO SPJ VALUES ('S2','P3','J4',500);
+INSERT INTO SPJ VALUES ('S2','P3','J5',600);
+INSERT INTO SPJ VALUES ('S2','P3','J6',400);
+INSERT INTO SPJ VALUES ('S2','P3','J7',800);
+INSERT INTO SPJ VALUES ('S2','P5','J2',100);
+
+INSERT INTO SPJ VALUES ('S3','P3','J1',200);
+INSERT INTO SPJ VALUES ('S3','P4','J2',500);
+
+INSERT INTO SPJ VALUES ('S4','P6','J3',300);
+INSERT INTO SPJ VALUES ('S4','P6','J7',300);
+
+INSERT INTO SPJ VALUES ('S5','P2','J2',200);
+INSERT INTO SPJ VALUES ('S5','P2','J4',100);
+INSERT INTO SPJ VALUES ('S5','P5','J5',500);
+INSERT INTO SPJ VALUES ('S5','P5','J7',100);
+INSERT INTO SPJ VALUES ('S5','P6','J2',200);
+INSERT INTO SPJ VALUES ('S5','P1','J4',100);
+INSERT INTO SPJ VALUES ('S5','P3','J4',200);
+INSERT INTO SPJ VALUES ('S5','P4','J4',800);
+INSERT INTO SPJ VALUES ('S5','P5','J4',400);
+INSERT INTO SPJ VALUES ('S5','P6','J4',500);
+
+
+
+create table Student(
+Stud_id varchar2(5) primary key,
+Stud_Name varchar2(50),
+PRN number(11)
+);
+
+insert into Student values('S01','Arjun',24070521074);
+
+
+create table course(
+course_id varchar2(5) primary key,
+Stud_id varchar2(5) primary key,
+course_name varchar2(50),
+foreign key (Stud_Id) references Student(Stud_id)
+);
